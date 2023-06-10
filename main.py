@@ -25,12 +25,4 @@ async def calculate_pot_odds(current_pot: float = 1.0, bet: float = 1.0):
     return {"pot_odds": pot_odds}
 
 
-# def normalize_notation(card: str):
-#     card = card.lower()
-#     if card[-1] not in ['s','c','h','d']:
-#         return "Suit Type Invalid"
-#     if card[:-1] not in ["2","3","4","5","6","7","8","9","t","j","q","k","a"]:
-#         return "Card Number Invalid"
-#     return card
-
 
