@@ -152,8 +152,27 @@ import random
 
 # USER INPUTS
 
+
+def subtract(all_cards,known_flops):
+    filtered = []
+    for card in enumerate(all_cards):
+        isFlop = False
+        for x in known_flops:
+            if card == x:
+                isFlop = True
+                break
+        if not isFlop:
+            filtered.append(card)
+
+    return filtered
+
+
 def sample_flop_and_player_hands(all_cards=None, n_players=5, n_flops=0, flops=None):
     hands = []
+    # if flops:
+    #     flop = flops
+    #     all_cards = subtract(all_cards, flop)
+    #     print(all_cards)
     for _ in range(n_players):
         hand = [all_cards.pop(random.randint(0, len(all_cards)-1)) for _ in range(2)]
         hands.append(hand)
@@ -267,9 +286,9 @@ flops = None
 flops = ["", "", ""]
     
 
-my_hand = ["qs", "ah"]
-flops = ["tc", "2s", "8h", "9h", "as"]
-flops = None
+my_hand = ["2s", "3h"]
+flops = ["3c", "3s", "3d", "6c"]
+# flops = None
     
 
     
@@ -280,7 +299,7 @@ flops = None
 # flops = ["2d", "js", "2s", "7c"]
 # get_odds(my_hand, deck_hash_perf)
 win_rates = []
-iterations=8000
+iterations=10000
 for x in range(iterations):
     deck_hash_perf["total_games"] +=1
     #if my_hand arg is supplied it will focus on generating those hands
@@ -324,9 +343,12 @@ with open('deck_hash_perf.pickle', 'wb') as handle:
 get_odds(my_hand, deck_hash_perf)
 
 
-# import matplotlib.pyplot as plt
-# import numpy as np
-# x = np.arange(len(win_rates))
-# plt.plot(x, win_rates)
-# plt.ylim([np.mean(win_rates)-0.1, np.mean(win_rates)+0.1])
-# plt.show()
+import matplotlib.pyplot as plt
+import numpy as np
+win_rates = [x * 100 for x in win_rates]
+x = np.arange(len(win_rates))
+plt.plot(x, win_rates)
+plt.ylim([np.mean(win_rates)-10, np.mean(win_rates)+10])
+plt.xlabel("Number of Simulations")
+plt.ylabel("Win Rate %")
+plt.show()
