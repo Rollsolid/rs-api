@@ -111,7 +111,6 @@ class MCTS:
 
 
 
-def get_deck():
 
     
 class Node(ABC):
@@ -120,11 +119,6 @@ class Node(ABC):
     MCTS works by constructing a tree of these Nodes.
     Could be e.g. a chess or checkers board state.
     """
-    
-    
-    self.your_hand = [] #!List of your 2 cards  e.g. "2s", "3h"
-    self.all_other_cards = 
-
     @abstractmethod
     def find_children(self):
         "All possible successors of this board state"
@@ -154,3 +148,86 @@ class Node(ABC):
     def __eq__(node1, node2):
         "Nodes must be comparable"
         return True
+    
+    
+    
+    
+    
+    
+    
+    
+
+
+
+
+
+
+
+from collections import namedtuple
+from random import choice
+# from monte_carlo_tree_search import MCTS, Node
+
+_PS = namedtuple("PokerGame", "my_hand other_hands flops results")
+
+# Inheriting from a namedtuple is convenient because it makes the class
+# immutable and predefines __init__, __repr__, __hash__, __eq__, and others
+class PokerGame(_PS, Node):
+    def find_children(board):
+        if board.terminal:  # If the game is finished then no moves can be made
+            return set()
+        # Otherwise, you can make a move in each of the empty spots
+        return {
+            board.make_move(i) for i, value in enumerate(board.tup) if value is None
+        }
+
+    def find_random_child(board):
+        if board.terminal:
+            return None  # If the game is finished then no moves can be made
+        empty_spots = [i for i, value in enumerate(board.tup) if value is None]
+        return board.make_move(choice(empty_spots))
+
+    def reward(board):
+        if board.winner is board.turn:
+            # It's your turn and you've already won. Should be impossible.
+            raise RuntimeError(f"reward called on unreachable board {board}")
+        if board.turn is (not board.winner):
+            return 0  # Your opponent has just won. Bad.
+        if board.winner is None:
+            return 0.5  # Board is a tie
+
+
+    def play_game():
+        tree = MCTS()
+        board = new_game()
+
+    def __str__(self):
+        x = ""
+        x += str(self.my_hand) + "\n"
+        x+=  str(self.other_hands)+ "\n"
+        x +=  str(self.flops)+ "\n"
+        x+= str(self.results)+ "\n"
+        return x
+
+    def new_game(self):
+        n_other_players = 5
+        n_flops = 0
+        state = generate_game(n_other_players,n_flops )
+        return PokerGame(my_hand=state['player_hand'], other_hands= state['other_hands'], flops=state['flops'], results=state['results'])
+
+
+# if __name__ == "__main__":
+#     play_game()
+
+
+
+from poker_game import generate_game
+n_other_players = 5
+n_flops = 0
+
+
+state = generate_game(n_other_players,n_flops )
+game = PokerGame(my_hand=state['player_hand'], other_hands= state['other_hands'], flops=state['flops'], results=state['results'])
+print(game)
+
+game = game.new_game()
+print(game)
