@@ -12,7 +12,6 @@ def get_rank(card):
 def get_suit(card):
     return card[1]
 
-
 def get_hand_rank(hand):
     rank_values = {rank.lower(): i for i, rank in enumerate(ranks)}
     ranks_count = [get_rank(card).lower() for card in hand]
@@ -306,7 +305,7 @@ if LOAD:
 
 def get_win_rate(my_hand, flops=None, n_other_players=5):
     win_rates = []
-    iterations = 10000
+    iterations = 30000
     for x in range(iterations):
         deck_hash_perf["total_games"] += 1
         # if my_hand arg is supplied it will focus on generating those hands
@@ -325,10 +324,11 @@ def get_win_rate(my_hand, flops=None, n_other_players=5):
             total_games = (
                 deck_hash_perf[player_hand]["wins"]
                 + deck_hash_perf[player_hand]["losses"]
-                + deck_hash_perf[player_hand]["draws"]
+                # + deck_hash_perf[player_hand]["draws"]
             )
             win_rate = deck_hash_perf[player_hand]["wins"] / total_games
             win_rates.append(win_rate)
+
             print(f"win_rate: {win_rate}", end="\r")
         except KeyError:
             player_hand = tuple([player_hand[1], player_hand[0]])
@@ -342,7 +342,7 @@ def get_win_rate(my_hand, flops=None, n_other_players=5):
             total_games = (
                 deck_hash_perf[player_hand]["wins"]
                 + deck_hash_perf[player_hand]["losses"]
-                + deck_hash_perf[player_hand]["draws"]
+                # + deck_hash_perf[player_hand]["draws"]
             )
             win_rate = deck_hash_perf[player_hand]["wins"] / total_games
             win_rates.append(win_rate)
@@ -357,7 +357,7 @@ def get_win_rate(my_hand, flops=None, n_other_players=5):
 #             pickle.dump(deck_hash_perf, handle, protocol=pickle.HIGHEST_PROTOCOL)
 
 
-my_hand = ["2s", "3h"]
+my_hand = ["kh", "kc"]
 flops = []
 
 win_rates = get_win_rate(my_hand, flops)
