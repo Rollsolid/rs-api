@@ -147,7 +147,7 @@ flopped_cards = ["Ts", "Js", "Qs", "Ks", "9s"]
 # print("Best hand:", best_hand)
 
 
-eval_hands_QUICK(player_hand, other_hands, flopped_cards)
+# eval_hands_QUICK(player_hand, other_hands, flopped_cards)
 
 import random
 
@@ -299,6 +299,29 @@ if not LOAD:
 if LOAD:
     with open("deck_hash_perf.pickle", "rb") as handle:
         deck_hash_perf = pickle.load(handle)
+
+
+
+
+
+from pokereval.card import Card
+from pokereval.hand_evaluator import HandEvaluator
+
+hole = [Card(2, 1), Card(2, 2)]
+board = []
+score = HandEvaluator.evaluate_hand(hole, board)
+
+Rank is 2-14 representing 2-A, while suit is 1-4 representing spades, hearts, diamonds, clubs.
+
+The Card constructor accepts two arguments, rank, and suit.
+
+aceOfSpades = Card(14, 1)
+twoOfDiamonds = Card(2, 3)
+
+
+def eval_hands():
+    
+
 
 
 
