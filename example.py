@@ -1,5 +1,5 @@
 from eval_poker import simulate_win_percent
-num_sims = 500
+num_sims = 1000
 
 
 
