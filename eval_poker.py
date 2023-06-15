@@ -178,9 +178,7 @@ def simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_pla
         board=None
     total_games = wins + draws + losses
     avg = wins/total_games
-    if print_ravg:
-            print(f"Running Average: {avg*100:{5}.{5}}%", end="\r")
-            
+
     if decimal_places > 0:
         avg *= 100
         avg = round(avg, decimal_places)
