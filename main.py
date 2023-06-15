@@ -1,4 +1,6 @@
+from eval_poker import simulate_win_percent
 from fastapi import FastAPI
+
 
 app = FastAPI()
 
@@ -26,3 +28,22 @@ async def calculate_pot_odds(current_pot: float = 1.0, bet: float = 1.0):
 
 
 
+
+num_sims = 1000
+
+
+# my_board_representation = ["3c", "3d", "7s"]
+# my_hand = ["3h", "4s"] 
+
+
+
+
+
+@app.get("/get_win_rate/")
+async def calculate_pot_odds(my_board_representation: str = "",  my_hand:str = "", num_sims: int = 1000):
+
+    my_board_representation = [str(x) for x in my_board_representation.split(",")]
+    my_hand = [str(x) for x in my_hand.split(",")]
+    print(my_hand)
+    win_percent = simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_players=3,print_sim=False, print_ravg=True, decimal_places=2)
+    return {"win_percent": win_percent}
