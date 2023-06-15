@@ -1,5 +1,5 @@
 # rs-api
-## Simple Utility for
+## Simple Utility for Calculating Win Rate for Poker Hands + Flops in Texas Hold'em
 
 Users can input their hand and up to five flopped cards to simulate their winning percentage based on a given number of simulations:
 
