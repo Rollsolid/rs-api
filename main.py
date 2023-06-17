@@ -1,7 +1,8 @@
 from fastapi import FastAPI
 import uvicorn
+from mangum import Mangum
 app = FastAPI()
-
+handler = Mangum(app)
 from eval_poker import simulate_win_percent
 
 
