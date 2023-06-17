@@ -1,5 +1,7 @@
-from treys import Card
 import random
+from tqdm import tqdm
+from treys import Card
+
 
 def _to_treys_representation(card_list):
     trey_cards = []
@@ -108,7 +110,6 @@ def get_winner(hand, other_hands, board, evaluator, fast=True):
     
     
     
-from tqdm import tqdm
 
 def simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_players=5, print_sim=False, print_ravg=False, decimal_places=None):
     remaining_cards, hand, board = generate_game_start_state(my_board_representation, my_hand)
