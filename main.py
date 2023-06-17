@@ -33,6 +33,3 @@ async def get_win_rate(my_board_representation: str = "", my_hand: str = "", num
     return {"win_rate": win_rate}
 
 
-
-if __name__ == '__main__':
-    uvicorn.run('main:app', host='0.0.0.0', port=8000)
