@@ -20,7 +20,16 @@ async def calculate_pot_odds(current_pot: float = 1.0, bet: float = 1.0):
 
 @app.get("/get_win_rate/")
 async def get_win_rate(my_board_representation: str = "", my_hand: str = "", num_sims: int = 100, n_other_players: int = 5):
-    win_rate = simulate_win_percent(my_board_representation.split(','), my_hand.split(','), num_sims, n_other_players=5,print_sim=False, print_ravg=True, decimal_places=2)
+    if my_board_representation == "":
+        # return {"x":my_board_representation}
+        my_board_representation = None
+    else:
+        my_board_representation = my_board_representation.split(',')
+    my_hand = my_hand.split(',')
+        
+    
+    win_rate = simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_players=5,print_sim=False, print_ravg=True, decimal_places=2)
+    
     return {"win_rate": win_rate}
 
 
