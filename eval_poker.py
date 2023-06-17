@@ -185,22 +185,23 @@ def simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_pla
     if decimal_places > 0:
         avg *= 100
         avg = round(avg, decimal_places)
-    # return avg
+        return avg
+    return avg
 
-    # return avg*100
+    # # return avg*100
     
-    import matplotlib.pyplot as plt
-    import numpy as np
+    # import matplotlib.pyplot as plt
+    # import numpy as np
 
-    win_rates = [x * 100 for x in win_rates]
-    x = np.arange(len(win_rates))
+    # win_rates = [x * 100 for x in win_rates]
+    # x = np.arange(len(win_rates))
 
-    plt.title("Win Rate Over Time")
-    plt.plot(x, win_rates)
-    plt.ylim([np.mean(win_rates) - 10, np.mean(win_rates) + 10])
-    plt.xlabel("Number of Simulations")
-    plt.ylabel("Win Rate %")
-    plt.show()
+    # plt.title("Win Rate Over Time")
+    # plt.plot(x, win_rates)
+    # plt.ylim([np.mean(win_rates) - 10, np.mean(win_rates) + 10])
+    # plt.xlabel("Number of Simulations")
+    # plt.ylabel("Win Rate %")
+    # plt.show()
 
 
 
