@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 from eval_poker import simulate_win_percent
 from fastapi import FastAPI
 
@@ -22,7 +21,6 @@ async def calculate_pot_odds(chance_percent: int = 1, current_pot: float = 1.0, 
 #     return {"implied_odds_dollars": implied_odds_dollars}
 
 
-=======
 from fastapi import FastAPI
 import uvicorn
 from mangum import Mangum
@@ -37,7 +35,6 @@ async def calculate_implied_odds(chance_percent: int = 1, current_pot: float = 1
     implied_odds_dollars = ((1 / (chance_percent/100.0)) * amount_to_call) - (current_pot + amount_to_call) 
     return {"implied_odds_dollars": implied_odds_dollars}
 
->>>>>>> ce9d61e3e0cf8280aa181b9e4ffb4b81c5c44fd8
 @app.get("/pot_odds/")
 async def calculate_pot_odds(current_pot: float = 1.0, bet: float = 1.0):
     pot_odds = (current_pot + bet ) /bet
@@ -45,7 +42,6 @@ async def calculate_pot_odds(current_pot: float = 1.0, bet: float = 1.0):
 
 
 
-<<<<<<< HEAD
 
 num_sims = 1000
 
@@ -65,7 +61,6 @@ async def calculate_pot_odds(my_board_representation: str = "",  my_hand:str = "
     print(my_hand)
     win_percent = simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_players=3,print_sim=False, print_ravg=True, decimal_places=2)
     return {"win_percent": win_percent}
-=======
 @app.get("/get_win_rate/")
 async def get_win_rate(my_board_representation: str = "", my_hand: str = "", num_sims: int = 100, n_other_players: int = 5):
     if my_board_representation == "":
@@ -81,4 +76,3 @@ async def get_win_rate(my_board_representation: str = "", my_hand: str = "", num
     return {"win_rate": win_rate}
 
 
->>>>>>> ce9d61e3e0cf8280aa181b9e4ffb4b81c5c44fd8

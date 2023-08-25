@@ -186,16 +186,8 @@ def simulate_win_percent(my_board_representation, my_hand, num_sims, n_other_pla
     if decimal_places > 0:
         avg *= 100
         avg = round(avg, decimal_places)
-<<<<<<< HEAD
     return avg
 
-    return avg*100
-=======
-        return avg
-    return avg
-
-    # # return avg*100
->>>>>>> ce9d61e3e0cf8280aa181b9e4ffb4b81c5c44fd8
     
     # import matplotlib.pyplot as plt
     # import numpy as np
