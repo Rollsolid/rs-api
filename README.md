@@ -1,4 +1,5 @@
 # rs-api
+Live Production: [https://rollsolid-api.onrender.com/](https://rollsolid-api.onrender.com/)
 ## Calculate Win Rate, Pot Odds and Implied Odds 
 ### Example: Calculating Win Rate for Poker Hands + Flops in Texas Hold'em
 Users can input their hand and up to five flopped cards to simulate their winning percentage based on a given number of simulations:
