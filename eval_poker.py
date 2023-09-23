@@ -252,7 +252,7 @@ def generate_game_start_state(my_board_representation, my_hand):
     
     exclude_me = my_hand.copy()
     
-    if my_board_representation is not None:
+    if my_board_representation is not None and my_board_representation != "":
         exclude_me.extend(my_board_representation)
     
     remaining_cards = get_deck(exclude_me)
