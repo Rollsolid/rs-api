@@ -251,7 +251,7 @@ def get_random_hands(n_other_players, remaining_cards, needed_flop_cards=0):
 def generate_game_start_state(my_board_representation, my_hand):
     
     exclude_me = my_hand.copy()
-    
+    print(f"my_board_representation: {my_board_representation}")
     if my_board_representation is not None and my_board_representation != "":
         exclude_me.extend(my_board_representation)
     
