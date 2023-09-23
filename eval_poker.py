@@ -204,6 +204,7 @@ class PLOEvaluator(Evaluator):
 
 def _to_treys_representation(card_list):
     trey_cards = []
+    print(f"Card List: {card_list}")
     for x in card_list:
         st = str(x[0]).upper() + x[1]
         trey_cards.append(Card.new(st))
