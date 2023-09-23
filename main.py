@@ -67,7 +67,7 @@ async def calculate_pot_odds(my_board_representation: str = "",  my_hand:str = "
 @app.get("/get_win_rate/")
 async def get_win_rate(my_board_representation: str = "", my_hand: str = "", num_sims: int = 100, n_other_players: int = 5):
     print(f"my_board_representation: {my_board_representation}")
-    if my_board_representation == "" or my_board_representation == '':
+    if my_board_representation == "" or my_board_representation == '' or my_board_representation == ['']:
         # return {"x":my_board_representation}
         my_board_representation = None
     else:
