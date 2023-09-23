@@ -259,7 +259,7 @@ def generate_game_start_state(my_board_representation, my_hand):
     remaining_cards=sorted(remaining_cards)
     
     hand = _to_treys_representation(my_hand)
-    if my_board_representation:
+    if my_board_representation and len(my_board_representation)>0:
         board = _to_treys_representation(my_board_representation)
     else:
         board=None
