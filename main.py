@@ -1,5 +1,7 @@
 from eval_poker import simulate_win_percent
 from fastapi import FastAPI
+from fastapi.middleware.cors import CORSMiddleware
+
 import uvicorn
 from mangum import Mangum
 app = FastAPI()
