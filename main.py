@@ -1,8 +1,28 @@
 from eval_poker import simulate_win_percent
 from fastapi import FastAPI
-
-
+import uvicorn
+from mangum import Mangum
 app = FastAPI()
+
+origins = [
+    "https://rollsolid.com",
+    "https://rollsolid.vercel.app",
+    "https://rollsolid-matthibbs7.vercel.app",
+    "http://localhost",
+    "http://localhost:8080",
+]
+
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=origins,
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"],
+)
+handler = Mangum(app)
+
+
+
 
 @app.get("/")
 async def root():
@@ -20,12 +40,6 @@ async def calculate_pot_odds(chance_percent: int = 1, current_pot: float = 1.0, 
 #     implied_odds_dollars = ((1 / (chance_percent/100.0)) * amount_to_call) - (current_pot + amount_to_call) 
 #     return {"implied_odds_dollars": implied_odds_dollars}
 
-
-from fastapi import FastAPI
-import uvicorn
-from mangum import Mangum
-app = FastAPI()
-handler = Mangum(app)
 from eval_poker import simulate_win_percent
 
 
