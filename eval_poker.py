@@ -275,23 +275,22 @@ def generate_game_start_state(my_board_representation, my_hand):
 
 
 
-def get_winner(hand, other_hands, board, evaluator, fast=True):
+def get_winner(hand, other_hands, board, evaluator):
     player_score = evaluator.evaluate(board, hand)
     player_rank = evaluator.get_rank_class(player_score)
     # other_hands = [_to_treys_representation(x) for x in other_hands]
     op_hand_scores = []
     op_hand_ranks = []
-    if fast:
-        for x in other_hands:
-            score = evaluator.evaluate(board, x)
-            rank_class = evaluator.get_rank_class(score)
-            op_hand_ranks.append(rank_class)
-        if min(op_hand_ranks) < player_rank:
-            return -1
-        elif min(op_hand_ranks) == player_rank:
-            return 0
-        else: 
-            return 1
+    for x in other_hands:
+        score = evaluator.evaluate(board, x)
+        rank_class = evaluator.get_rank_class(score)
+        op_hand_ranks.append(rank_class)
+    if min(op_hand_ranks) < player_rank:
+        return -1
+    elif min(op_hand_ranks) == player_rank:
+        return 1
+    else: 
+        return 1
     
     for x in other_hands:
         score = evaluator.evaluate(board, x)
